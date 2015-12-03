@@ -69,8 +69,9 @@ var monographs =
                 {'kana': 'え', 'romaji': 'e', 'origin': '衣', 'placeholder': true},
                 {'kana': 'を', 'romaji': 'o', 'origin': '遠'}]}];
 
-var monographsMap = {};
 
+var monographsMap = {};
+var kanas = [];
 for (var i = 0; i < monographs.length; ++i) {
     var row = monographs[i];
     var words = row.words;
@@ -81,6 +82,7 @@ for (var i = 0; i < monographs.length; ++i) {
       var word = words[j];
       // console.log(word);
       monographsMap[word.romaji] = word.kana;
+      kanas.push(word.kana);
     }
 }
 

@@ -17,26 +17,58 @@ var plane = svg.append("path")
                    .attr("transform", "translate(" + 0 + "," + 100 + ") scale(5)")
                    .attr("fill", '#ff7f0e');
 
+var currentKanas = [];
+
+var updateKana = function () {
+  for (var i = 0; i < currentKanas.length; ++i) {
+    var kana = currentKanas[i];
+    kana.y += 40;
+    kana.text.attr("transform", "translate(" + kana.x + "," + kana.y + ")");
+  }
+}
+var addKana = function() {
+  updateKana();
+  var x = Math.floor(Math.random() * 200);
+  var y = -320;
+  var kana = kanas[Math.floor(Math.random()*kanas.length)];
+  
+  var text = svg.append("text").text(kana)
+    .attr('font-size', '40px')
+    .attr('fill', '#1f77b4')
+    .attr("transform", "translate(" + x + "," + y + ")");
+
+  currentKanas.push({
+    x: x,
+    y: y,
+    text: text
+  });
+}
+
+var interval = 2000;
+
+setInterval(addKana, interval);
+
 
 var bullet = svg.append("text").text('あ')
-  .attr('font-size', '50px')
+  .attr('font-size', '40px')
   .attr('fill', '#1f77b4')
   .attr("transform", "translate(" + 100 + "," + 120 + ")")
 
-var fall = svg.append("text").text('あ')
-  .attr('font-size', '50px')
-  .attr('fill', '#1f77b4')
-  .attr("transform", "translate(" + 100 + "," + -270 + ")")
+// var fall = svg.append("text").text('あ')
+//   .attr('font-size', '50px')
+//   .attr('fill', '#1f77b4')
+//   .attr("transform", "translate(" + 100 + "," + -270 + ")")
 
-var fall2 = svg.append("text").text('い')
-  .attr('font-size', '50px')
-  .attr('fill', '#1f77b4')
-  .attr("transform", "translate(" + 60 + "," + -320 + ")")
+// var fall2 = svg.append("text").text('い')
+//   .attr('font-size', '50px')
+//   .attr('fill', '#1f77b4')
+//   .attr("transform", "translate(" + 60 + "," + -320 + ")")
 
 d3.select("body").on("keydown", function () { 
   var ch = String.fromCharCode(d3.event.keyCode).toLowerCase();
-
-  console.log(ch + ' ' + monographsMap[ch]);
+  var kana = monographsMap[ch];
+  // console.log(ch + ' ' + monographsMap[ch]);
+  bullet.text(kana);
 });
 
 // var bullet = svg.append('svg:image')
