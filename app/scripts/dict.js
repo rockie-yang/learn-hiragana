@@ -69,20 +69,20 @@ var monographs =
                 {'kana': 'え', 'romaji': 'e', 'origin': '衣', 'placeholder': true},
                 {'kana': 'を', 'romaji': 'o', 'origin': '遠'}]}];
 
-// var monographsMap = {};
+var monographsMap = {};
 
-// for (var i = 0; i < monographs.length; ++i) {
-//     var row = monographs[i];
-//     var words = row.words;
-//     console.log(row.name + ' ' + row.words);
+for (var i = 0; i < monographs.length; ++i) {
+    var row = monographs[i];
+    var words = row.words;
+    // console.log(row.name + ' ' + row.words);
 
-//     for (var j = 0; j < words.length; ++j) {
+    for (var j = 0; j < words.length; ++j) {
 
-//       var word = words[j];
-//       console.log(word);
-//       monographs[word.romaji] = word.kana;
-//     }
-// }
+      var word = words[j];
+      // console.log(word);
+      monographsMap[word.romaji] = word.kana;
+    }
+}
 
 
 var diacritics = 

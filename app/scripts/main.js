@@ -34,8 +34,9 @@ var fall2 = svg.append("text").text('い')
   .attr("transform", "translate(" + 60 + "," + -320 + ")")
 
 d3.select("body").on("keydown", function () { 
-  console.log("global key" + d3.event.keyCode); 
-  // console.log(monographsMap[d3.event.keyCode]);
+  var ch = String.fromCharCode(d3.event.keyCode).toLowerCase();
+
+  console.log(ch + ' ' + monographsMap[ch]);
 });
 
 // var bullet = svg.append('svg:image')
