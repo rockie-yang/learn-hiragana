@@ -72,6 +72,15 @@ var monographs =
 
 var monographsMap = {};
 var kanas = [];
+var possibleRomaji = {};
+
+var addPossibleRomaji = function(romaji) {
+  for (var i = 1; i <= romaji.length; ++i) {
+    var sub = romaji.substring(0, i);
+    possibleRomaji[sub] = true;
+  }
+}
+
 for (var i = 0; i < monographs.length; ++i) {
     var row = monographs[i];
     var words = row.words;
@@ -82,6 +91,7 @@ for (var i = 0; i < monographs.length; ++i) {
       var word = words[j];
       // console.log(word);
       monographsMap[word.romaji] = word.kana;
+      addPossibleRomaji(word.romaji);
       kanas.push(word.kana);
     }
 }

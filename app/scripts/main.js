@@ -64,11 +64,34 @@ var bullet = svg.append("text").text('あ')
 //   .attr('fill', '#1f77b4')
 //   .attr("transform", "translate(" + 60 + "," + -320 + ")")
 
+var romaji = '';
+
 d3.select("body").on("keydown", function () { 
   var ch = String.fromCharCode(d3.event.keyCode).toLowerCase();
-  var kana = monographsMap[ch];
-  // console.log(ch + ' ' + monographsMap[ch]);
-  bullet.text(kana);
+
+  var choice = romaji + ch;
+
+  if (choice in monographsMap) {
+    var kana = monographsMap[choice];
+    romaji = '';
+    bullet.text(kana);
+    return;
+  }
+
+  // there are still chance for append next char
+  if (choice in possibleRomaji) {
+    romaji = choice;
+    return;
+  }
+  
+
+  if (ch in monographsMap) {
+    var kana = monographsMap[ch];
+    romaji = '';
+    bullet.text(kana);
+    return;
+  }
+
 });
 
 // var bullet = svg.append('svg:image')
