@@ -2,9 +2,8 @@ var width = 960,
     height = 700,
     radius = Math.min(width, height) / 2;
 
-var color = d3.scale.ordinal()
-    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
+var color = d3.scale.category10();
 var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height)
@@ -26,6 +25,9 @@ var updateKana = function () {
     kana.text.attr("transform", "translate(" + kana.x + "," + kana.y + ")");
   }
 }
+
+var colorIndex = 0;
+
 var addKana = function() {
   updateKana();
   var x = Math.floor(Math.random() * 200);
@@ -34,17 +36,19 @@ var addKana = function() {
   
   var text = svg.append("text").text(kana)
     .attr('font-size', '40px')
-    .attr('fill', '#1f77b4')
+    .attr('fill', color(colorIndex))
     .attr("transform", "translate(" + x + "," + y + ")");
 
+  colorIndex = (colorIndex + 1) % 10;
   currentKanas.push({
     x: x,
     y: y,
-    text: text
+    text: text,
+    kana: kana
   });
 }
 
-var interval = 2000;
+var interval = 3000;
 
 setInterval(addKana, interval);
 
@@ -64,6 +68,17 @@ var bullet = svg.append("text").text('あ')
 //   .attr('fill', '#1f77b4')
 //   .attr("transform", "translate(" + 60 + "," + -320 + ")")
 
+var shoot = function(kana) {
+  if (currentKanas.length > 0) {
+    var first = currentKanas[0];
+    if (first.kana === kana) {
+      first.text.attr('class', "shot");
+      d3.selectAll('.shot').remove();
+      currentKanas.shift();
+    }
+  }
+}
+
 var romaji = '';
 
 d3.select("body").on("keydown", function () { 
@@ -75,6 +90,7 @@ d3.select("body").on("keydown", function () {
     var kana = monographsMap[choice];
     romaji = '';
     bullet.text(kana);
+    shoot(kana);
     return;
   }
 
@@ -89,6 +105,7 @@ d3.select("body").on("keydown", function () {
     var kana = monographsMap[ch];
     romaji = '';
     bullet.text(kana);
+    shoot(kana);
     return;
   }
 
