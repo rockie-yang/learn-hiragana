@@ -72,6 +72,8 @@ var shoot = function(kana) {
   if (currentKanas.length > 0) {
     var first = currentKanas[0];
     if (first.kana === kana) {
+      
+      new Audio('/sound/267341__coolguy244e__bullet-hit.mp3').play();
       first.text.attr('class', "shot");
       d3.selectAll('.shot').remove();
       currentKanas.shift();
@@ -112,6 +114,7 @@ d3.select("body").on("keydown", function () {
 });
 
 new Audio('/sound/21741__erdie__car-start.mp3').play();
+
 
 // var bullet = svg.append('svg:image')
 //    .attr('x',100)
