@@ -77,6 +77,10 @@ var shoot = function(kana) {
       first.text.attr('class', "shot");
       d3.selectAll('.shot').remove();
       currentKanas.shift();
+    } else {
+      
+      new Audio('/sound/68449__cdrk__broken-bottle-01.wav').play();
+      // new Audio('/sound/121655__halleck__metal-crash-1.wav').play();
     }
   }
 }
@@ -100,6 +104,8 @@ d3.select("body").on("keydown", function () {
   if (choice in possibleRomaji) {
     romaji = choice;
     return;
+  } else {
+
   }
   
 
