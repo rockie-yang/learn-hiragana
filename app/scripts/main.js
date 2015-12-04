@@ -53,7 +53,7 @@ var interval = 3000;
 setInterval(addKana, interval);
 
 
-var bullet = svg.append("text").text('あ')
+var bullet = svg.append("text").text('')
   .attr('font-size', '40px')
   .attr('fill', '#1f77b4')
   .attr("transform", "translate(" + 100 + "," + 120 + ")")
