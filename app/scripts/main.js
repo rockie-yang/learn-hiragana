@@ -18,6 +18,7 @@ var plane = svg.append("path")
 
 var currentKanas = [];
 
+var timer;
 var updateKana = function () {
   for (var i = 0; i < currentKanas.length; ++i) {
     var kana = currentKanas[i];
@@ -30,6 +31,14 @@ var colorIndex = 0;
 
 var addKana = function() {
   updateKana();
+  if (currentKanas.length > 0) {
+    var first = currentKanas[0];
+    console.log(first.y);
+    if (first.y > 100) {
+      clearInterval(timer);
+      new Audio('/sound/95084__nakina4__i-will-never-die.wav').play();
+    }
+  }
   var x = Math.floor(Math.random() * 200);
   var y = -320;
   var kana = kanas[Math.floor(Math.random()*kanas.length)];
@@ -48,9 +57,9 @@ var addKana = function() {
   });
 }
 
-var interval = 3000;
+var interval = 1000;
 
-setInterval(addKana, interval);
+timer = setInterval(addKana, interval);
 
 
 var bullet = svg.append("text").text('')
