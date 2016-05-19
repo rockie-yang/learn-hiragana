@@ -1,2 +1,2 @@
-# learn-japanese
-Learn Japanese with Game Playing.
+# Learn Japanese hiragana
+Learn Japanese Hiragana with Game Playing.
