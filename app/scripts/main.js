@@ -2,6 +2,7 @@ var width = 960,
     height = 700,
     radius = Math.min(width, height) / 2;
 
+var baseUrl = 'http://rockiey.github.io/learn-hiragana';
 
 var color = d3.scale.category10();
 var svg = d3.select("body").append("svg")
@@ -36,7 +37,7 @@ var addKana = function() {
     console.log(first.y);
     if (first.y > 100) {
       clearInterval(timer);
-      new Audio('sound/95084__nakina4__i-will-never-die.wav').play();
+      new Audio(baseUrl + '/sound/95084__nakina4__i-will-never-die.wav').play();
     }
   }
   var x = Math.floor(Math.random() * 200);
@@ -82,13 +83,13 @@ var shoot = function(kana) {
     var first = currentKanas[0];
     if (first.kana === kana) {
       
-      new Audio('sound/267341__coolguy244e__bullet-hit.mp3').play();
+      new Audio(baseUrl + '/sound/267341__coolguy244e__bullet-hit.mp3').play();
       first.text.attr('class', "shot");
       d3.selectAll('.shot').remove();
       currentKanas.shift();
     } else {
       
-      new Audio('sound/68449__cdrk__broken-bottle-01.wav').play();
+      new Audio(baseUrl + '/sound/68449__cdrk__broken-bottle-01.wav').play();
       // new Audio('sound/121655__halleck__metal-crash-1.wav').play();
     }
   }
@@ -128,7 +129,7 @@ d3.select("body").on("keydown", function () {
 
 });
 
-new Audio('sound/21741__erdie__car-start.mp3').play();
+new Audio(baseUrl + '/sound/21741__erdie__car-start.mp3').play();
 
 
 // var bullet = svg.append('svg:image')
