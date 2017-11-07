@@ -2,7 +2,7 @@ var width = 960,
     height = 700,
     radius = Math.min(width, height) / 2;
 
-var baseUrl = 'http://rockiey.github.io/learn-hiragana';
+var baseUrl = 'http://rockie-yang.github.io/learn-hiragana';
 
 var color = d3.scale.category10();
 var svg = d3.select("body").append("svg")
